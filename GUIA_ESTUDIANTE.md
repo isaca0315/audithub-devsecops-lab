@@ -224,7 +224,7 @@ lo verificaste.
 
 ## Entregable
 
-Un informe técnico en Markdown o PDF con esta estructura:
+Un informe técnico en PDF con esta estructura:
 
 1. Portada con nombre, fecha y versión del laboratorio.
 2. Síntoma, evidencia (comando y salida con valores enmascarados), alcance del
@@ -234,7 +234,7 @@ Un informe técnico en Markdown o PDF con esta estructura:
    observaste.
 4. Un párrafo sobre el orden en que analizaste la fuga.
 
-Plantilla mínima para el informe:
+Contenido mínimo del PDF:
 
 ```markdown
 # Informe: exposición de secretos en AuditHub

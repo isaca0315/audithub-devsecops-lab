@@ -187,7 +187,7 @@ usado y una frase sobre qué demuestra cada una. No son secretos reales.
 
 ## Entrega
 
-Informe técnico en Markdown o PDF con portada, síntoma, tabla de evidencia
+Informe técnico en PDF con portada, síntoma, tabla de evidencia
 (comando + salida con valores **enmascarados** + hallazgo), alcance e impacto,
 corrección y rotación, verificación posterior, controles de pipeline propuestos
 y orden del análisis. No incluyas secretos reales ni credenciales de otros
