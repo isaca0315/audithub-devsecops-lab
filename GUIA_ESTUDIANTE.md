@@ -44,7 +44,7 @@ Al terminar el laboratorio deberías poder:
 - Los puertos publicados escuchan solo en `127.0.0.1`.
 
 Los comandos son los mismos en Ubuntu y en Kali. El laboratorio se validó en
-Ubuntu 24.04 y en Kali GNU/Linux Rolling.
+Ubuntu 24.04.5 y en Kali GNU/Linux Rolling, con Compose v5.8.0 en ambos.
 
 ## Flujo de trabajo sugerido
 
@@ -309,8 +309,9 @@ Si al verificar la corrección dejás de ver dos marcas, es el resultado esperad
 
 Es una extensión fuera de la entrega. El arranque del laboratorio y la instalación
 de estas herramientas se probaron en Ubuntu 24.04 y en Kali GNU/Linux Rolling con
-`sudo sh scripts/install-tools.sh`. Siguen siendo opcionales: podés omitirlas sin
-consecuencias y la evidencia obligatoria no depende de ellas.
+`sudo sh scripts/install-tools.sh`, que no reinstala lo que ya está presente.
+Siguen siendo opcionales: podés omitirlas sin consecuencias y la evidencia
+obligatoria no depende de ellas.
 
 | Herramienta | Uso propuesto | Observación buscada |
 |---|---|---|
@@ -335,7 +336,14 @@ No reemplazan a `curl`, `docker inspect` ni al análisis del impacto.
 
 ## Problemas frecuentes
 
-- `docker: 'compose' is not a docker command`: falta Compose v2.
+- `docker: 'compose' is not a docker command`: falta Compose v2; corré
+  `sudo sh scripts/install-tools.sh`.
+- `apt-get update` falla en Kali con `download.docker.com/linux/debian ...
+  kali-rolling 404`: desactivá ese repo con
+  `sudo mv /etc/apt/sources.list.d/docker.sources{,.disabled}` y volvé a correr
+  el script.
+- `docker compose version` muestra otra versión: revisá
+  `~/.docker/cli-plugins/docker-compose`, que puede tener prioridad.
 - `port is already allocated`: otro proceso ocupa el puerto 3100. Revisá con
   `docker compose ps` antes de levantar.
 - Un servicio no llega a `healthy`: esperá unos segundos y volvé a consultar

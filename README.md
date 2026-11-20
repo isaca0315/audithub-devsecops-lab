@@ -72,7 +72,8 @@ devsecops/
 - Puerto `3100` libre en `127.0.0.1`
 
 Los comandos son los mismos en Ubuntu y en Kali. El laboratorio se validó en
-Ubuntu 24.04 y en Kali GNU/Linux Rolling.
+Ubuntu 24.04.5 (Docker 29.1.3, Compose v5.8.0) y en Kali GNU/Linux Rolling
+(Docker 28.5.2, Compose v5.8.0).
 
 Trabajá sobre una copia de la carpeta: el repositorio se entrega con el defecto
 intacto y conviene no editar `.env` ni `app/server.js` antes de reproducirlo.
@@ -92,10 +93,11 @@ El script instala Docker Engine, el plugin `docker compose` (v5.8.0), `curl`,
 `trivy`: en Kali está en los repositorios, en Ubuntu 24.04 no, y el script lo
 avisa para que lo instales desde <https://trivy.dev> si lo necesitás.
 
-Si tu usuario no era root, el script lo agrega al grupo `docker`; cerrá sesión y
-volvé a entrar antes de correr `docker compose`. Verificá con
-`docker compose version`. Las herramientas son opcionales: el laboratorio se
-reproduce solo con Docker, Compose y `curl`.
+El script omite lo que ya está instalado: en Kali varias herramientas vienen en
+el sistema y no se reinstalan ni se actualizan. Si tu usuario no era root, lo
+agrega al grupo `docker`; cerrá sesión y volvé a entrar antes de correr
+`docker compose`. Verificá con `docker compose version`. Las herramientas son
+opcionales: el laboratorio se reproduce solo con Docker, Compose y `curl`.
 
 ## Comprobación previa
 
@@ -195,7 +197,15 @@ entornos. El formato detallado y el criterio de evaluación están en la guía.
 
 ## Problemas frecuentes
 
-- `docker: 'compose' is not a docker command`: falta Compose v2.
+- `docker: 'compose' is not a docker command`: falta Compose v2; corré el script
+  de instalación.
+- `apt-get update` falla en Kali con `download.docker.com/linux/debian ...
+  kali-rolling 404`: ese repo de Docker no publica esa suite. Desactivá el
+  archivo con `sudo mv /etc/apt/sources.list.d/docker.sources{,.disabled}` y
+  volvé a correr el script; se usa `docker.io` de los repos de Kali.
+- `docker compose version` muestra una versión distinta a la instalada: hay un
+  plugin de usuario que tiene prioridad. Revisá
+  `~/.docker/cli-plugins/docker-compose` y renombralo si está obsoleto.
 - `port is already allocated`: otro proceso ocupa el puerto 3100.
 - Un servicio no llega a `healthy`: esperá unos segundos; los healthchecks tienen
   periodo de gracia.
