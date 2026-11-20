@@ -37,7 +37,7 @@ app.get('/health', async (_req, res) => {
 app.get('/events', async (_req, res) => {
   try {
     const { rows } = await db.query(
-      'SELECT id, actor, action, created_at FROM events ORDER BY id DESC LIMIT 50'
+      'SELECT id, actor, action, note, created_at FROM events ORDER BY id DESC LIMIT 50'
     );
     res.json(rows);
   } catch (err) {
