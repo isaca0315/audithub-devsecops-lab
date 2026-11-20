@@ -1,0 +1,17 @@
+{
+  "name": "audithub-api",
+  "version": "1.0.0",
+  "private": true,
+  "description": "API de AuditHub: consulta el registro de auditoría y expone el estado del servicio",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "pg": "^8.13.1"
+  }
+}

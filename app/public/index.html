@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AuditHub</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <img src="/favicon.svg" alt="" width="28" height="28">
+      <div class="brand-text">
+        <span class="brand-name">AuditHub</span>
+        <span class="brand-sub">Registro de auditoría</span>
+      </div>
+    </div>
+    <div class="service">
+      <span class="dot" id="service-dot"></span>
+      <span id="service-label">Comprobando servicio</span>
+    </div>
+  </header>
+
+  <main>
+    <section class="card">
+      <div class="section-head">
+        <h1>Eventos recientes</h1>
+        <button type="button" class="ghost" id="refresh">Actualizar</button>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Acción</th>
+              <th scope="col">Actor</th>
+              <th scope="col">Fecha</th>
+            </tr>
+          </thead>
+          <tbody id="events"></tbody>
+        </table>
+        <p class="empty" id="empty" hidden></p>
+      </div>
+    </section>
+  </main>
+
+  <footer>AuditHub · v1.0.0</footer>
+  <script src="/app.js" defer></script>
+</body>
+</html>
