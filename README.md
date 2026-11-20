@@ -5,15 +5,13 @@
 > Docker Engine y Compose v2 · Nivel: intermedio
 
 AuditHub es una API de auditoría con interfaz web, PostgreSQL 15 y un proxy
-inverso nginx, todo en Docker Compose. El laboratorio parte de un incidente:
-parte de la configuración interna de la API se puede consultar sin
-autenticación. Hay un defecto deliberado en el stack y el objetivo es
-reproducirlo, medir su alcance, documentarlo con evidencia y proponer una
-corrección.
+inverso nginx, todo en Docker Compose. El incidente del laboratorio es una
+fuga deliberada: parte de la configuración interna de la API se puede consultar
+sin autenticación. El trabajo reproduce la fuga, mide su alcance, reúne
+evidencia y propone una corrección.
 
-**Este repositorio conserva el estado original del laboratorio, con el defecto
-intacto.** La corrección y su justificación se entregan por separado. La guía
-de trabajo está en [`GUIA_ESTUDIANTE.md`](GUIA_ESTUDIANTE.md).
+Este repositorio conserva el defecto intacto. La corrección se entrega por
+separado. La guía de trabajo está en [`GUIA_ESTUDIANTE.md`](GUIA_ESTUDIANTE.md).
 
 > Las credenciales de este laboratorio son fijas y de uso exclusivo del aula.
 > No las reutilices fuera de ella ni publiques el puerto en una red abierta.
@@ -75,9 +73,9 @@ Los comandos son los mismos en Ubuntu y en Kali. El laboratorio se validó en
 Ubuntu 24.04.5 (Docker 29.1.3, Compose v5.8.0) y en Kali GNU/Linux Rolling
 (Docker 28.5.2, Compose v5.8.0).
 
-Trabajá sobre una copia de la carpeta: el repositorio se entrega con el defecto
-intacto y conviene no editar `.env` ni `app/server.js` antes de reproducirlo.
-`.env` está incluido a propósito; no lo reemplaces por un archivo de ejemplo.
+Trabajá sobre una copia de la carpeta y no edites `.env` ni `app/server.js`
+antes de reproducir la fuga. `.env` está incluido a propósito; no lo reemplaces
+por un archivo de ejemplo.
 
 ## Instalación de herramientas
 
@@ -93,12 +91,11 @@ El script instala Docker Engine, el plugin `docker compose` (v5.8.0), `curl`,
 `trivy`: en Kali está en los repositorios, en Ubuntu 24.04 no, y el script lo
 avisa para que lo instales desde <https://trivy.dev> si lo necesitás.
 
-El script instala cualquier herramienta de la lista que falte, tanto en Ubuntu
-como en Kali, y omite las que ya están: en Kali varias vienen en el sistema y no
-se reinstalan ni se actualizan. Si tu usuario no era root, lo agrega al grupo
+El script instala lo que falte en Ubuntu o en Kali y deja lo que ya está, sin
+reinstalarlo ni actualizarlo. Si tu usuario no era root, lo agrega al grupo
 `docker`; cerrá sesión y volvé a entrar antes de correr `docker compose`.
-Verificá con `docker compose version`. Las herramientas son opcionales: el
-laboratorio se reproduce solo con Docker, Compose y `curl`.
+Verificá con `docker compose version`. El laboratorio se reproduce solo con
+Docker, Compose y `curl`.
 
 ## Comprobación previa
 
@@ -176,10 +173,10 @@ docker inspect audithub-api --format '{{.LogPath}}'
 
 `nmap`, `ffuf`/`gobuster`, `gitleaks`, `trivy`, `docker-bench-security`, `lynis`
 y `netcat` pueden ayudar en la fase de búsqueda y se instalan con
-`scripts/install-tools.sh`, pero **no forman parte de la evidencia
-obligatoria**. La evidencia indispensable sale de `curl`, `docker compose` y
-`docker inspect`. Un escáner encuentra rutas; no determina si lo devuelto es
-válido ni qué hay que rotar.
+`scripts/install-tools.sh`, pero no forman parte de la evidencia obligatoria.
+La evidencia indispensable sale de `curl`, `docker compose` y `docker inspect`.
+Un escáner encuentra rutas; no dice si lo devuelto es válido ni qué credenciales
+hay que rotar.
 
 ### Marcas del ejercicio
 

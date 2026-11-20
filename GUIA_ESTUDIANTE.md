@@ -13,9 +13,9 @@ incidente de seguridad: parte de la configuración interna de la API se puede
 consultar sin autenticación.
 
 Tu trabajo es reproducir la fuga, medir qué información se expone y reunir
-evidencia. Un par de comprobaciones sobre el host Ubuntu 24.04 te ayudarán a
-entender de dónde sale el dato. Las pistas al final orientan el diagnóstico, pero
-no contienen la corrección.
+evidencia. Dos comprobaciones sobre el host, Ubuntu 24.04 o Kali Linux, te
+ayudarán a entender de dónde sale el dato. Las pistas al final orientan el
+diagnóstico sin incluir la corrección.
 
 ## Objetivos
 
@@ -119,10 +119,10 @@ ruta?
 
 ## Búsqueda dirigida de vulnerabilidades
 
-La búsqueda no es un escaneo masivo. Primero enumerá lo que se publica, después
-probá rutas y cabeceras con `curl`, y por último cruzá cada respuesta con los
-logs de la API y del proxy. Con `docker compose ps` y `docker inspect` alcanza
-para saber qué servicios existen y con qué entorno arrancaron.
+Primero enumerá lo que se publica, después probá rutas y cabeceras con `curl`,
+y por último cruzá cada respuesta con los logs de la API y del proxy. Con
+`docker compose ps` y `docker inspect` alcanza para saber qué servicios existen
+y con qué entorno arrancaron.
 
 Anotá qué miraste en cada paso. Si tenés Kali a mano, `nmap`, `ffuf` o
 `gobuster` y `gitleaks` pueden ayudar, pero siguen siendo opcionales y no
@@ -300,8 +300,7 @@ qué demuestra cada una. No copies secretos reales ni valores de otros entornos.
 
 Recordatorio de Kali, solo como ayuda: para la pista 1 puede servir un
 descubridor de rutas como `ffuf` o `gobuster`; para la pista 2, `gitleaks` sobre
-el código; para la pista 5, `trivy` o `docker-bench-security`. Siguen siendo
-opcionales y no probadas en el aula. Ninguna reemplaza el análisis.
+el código; para la pista 5, `trivy` o `docker-bench-security`.
 
 Si al verificar la corrección dejás de ver dos marcas, es el resultado esperado.
 
