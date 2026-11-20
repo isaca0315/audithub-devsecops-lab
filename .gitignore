@@ -1,0 +1,5 @@
+# Artefactos locales. .env NO se ignora: el laboratorio no arranca sin él.
+*.log
+__pycache__/
+.DS_Store
+node_modules/

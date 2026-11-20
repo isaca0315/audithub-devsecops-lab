@@ -194,6 +194,15 @@ docker compose exec -T -e PGPASSWORD=$(grep '^POSTGRES_PASSWORD=' .env | cut -d=
 - consecuencia de que esos valores sean reales;
 - hora y servicio en que se produce cada hallazgo.
 
+Usá esta tabla como diario de hallazgos mientras avanzás:
+
+| Hora | Servicio | Comando | Salida enmascarada | Qué demuestra |
+|---|---|---|---|---|
+|  |  |  |  |  |
+
+No pegues el JSON completo de la respuesta de depuración en el informe: alcanza
+con la lista de nombres de variables sensibles.
+
 ### Preguntas para la defensa
 
 - ¿Qué información revela la respuesta y por qué es sensible?

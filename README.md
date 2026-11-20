@@ -44,6 +44,9 @@ devsecops/
 │   └── default.conf     # virtual host del proxy inverso
 ├── README.md            # este documento
 ├── GUIA_ESTUDIANTE.md   # guía de trabajo, sin corrección
+├── scripts/
+│   └── smoke.sh         # comprobación opcional de /health y /events
+├── .gitignore           # ignora artefactos, no ignora .env
 └── app/
     ├── .dockerignore
     ├── Dockerfile       # Node 22, usuario node, npm ci
@@ -62,9 +65,29 @@ devsecops/
 - Host Ubuntu 24.04 o Kali Linux con Docker Engine y Compose v2 (`docker compose`)
 - `curl`
 - ~700 MB libres para las imágenes
+- Acceso a `docker.io` y `registry.npmjs.org` la primera vez: se descargan las
+  imágenes base y `npm ci` instala las dependencias
+- Permisos para usar Docker: usuario en el grupo `docker` o prefijar `sudo`
+- Puerto `3100` libre en `127.0.0.1`
 
 Los comandos son los mismos en Ubuntu y en Kali. La validación registrada se
 hizo en Ubuntu 24.04; en Kali no se ejecutó el laboratorio.
+
+Trabajá sobre una copia de la carpeta: el repositorio se entrega con el defecto
+intacto y conviene no editar `.env` ni `app/server.js` antes de reproducirlo.
+`.env` está incluido a propósito; no lo reemplaces por un archivo de ejemplo.
+
+## Comprobación previa
+
+```bash
+docker compose version
+docker compose config >/dev/null
+curl --version
+ss -ltn | grep ':3100' || echo 'puerto 3100 libre'
+```
+
+`docker compose config` valida el archivo sin levantar nada. Si los comandos
+`docker` piden permisos, usá `sudo` o agregá tu usuario al grupo `docker`.
 
 ## Servicios
 
@@ -106,6 +129,10 @@ curl -s http://localhost:3100/events
 
 La interfaz web queda en `http://localhost:3100` y muestra los eventos de la
 tabla `events`. Guardá esas salidas como referencia de funcionamiento normal.
+
+También podés verificar el entorno con `sh scripts/smoke.sh`. Acepta otra URL
+como primer argumento si el proxy no está en `localhost`. Solo consulta
+`/health` y `/events`: no revela la ruta del incidente.
 
 ## Trabajo a realizar
 
