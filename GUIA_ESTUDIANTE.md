@@ -34,15 +34,17 @@ Al terminar el laboratorio deberías poder:
 
 ## Antes de empezar
 
-- Trabajás sobre Ubuntu 24.04 o Kali Linux con Docker Engine, Compose v2 y
-  `curl` instalados.
-- Necesitás alrededor de 700 MB libres para las imágenes.
+- Trabajás sobre Ubuntu 24.04 o Kali Linux. Si te faltan Docker, Compose v2 o
+  `curl`, corré una vez `sudo sh scripts/install-tools.sh` desde la carpeta del
+  laboratorio.
+- Necesitás alrededor de 700 MB libres para las imágenes y acceso a `docker.io`
+  y `registry.npmjs.org` la primera vez.
 - Trabajá sobre una copia del laboratorio. Primero reproducí, después analizá.
 - Guardá las salidas completas, con el comando que las produjo.
 - Los puertos publicados escuchan solo en `127.0.0.1`.
 
-Los comandos son los mismos en Ubuntu y en Kali. Esta guía se validó en Ubuntu
-24.04; en Kali no se probó.
+Los comandos son los mismos en Ubuntu y en Kali. El laboratorio se validó en
+Ubuntu 24.04 y en Kali GNU/Linux Rolling.
 
 ## Flujo de trabajo sugerido
 
@@ -305,10 +307,10 @@ Si al verificar la corrección dejás de ver dos marcas, es el resultado esperad
 
 ## Herramientas de Kali Linux (opcional)
 
-Es una extensión fuera de la entrega. En el aula no disponíamos de Kali, ni como
-host ni con estas herramientas, así que ni el arranque en Kali ni estos comandos
-fueron probados para este laboratorio. Si usás Kali como host, seguís los mismos
-pasos. Podés omitir las herramientas sin consecuencias.
+Es una extensión fuera de la entrega. El arranque del laboratorio y la instalación
+de estas herramientas se probaron en Ubuntu 24.04 y en Kali GNU/Linux Rolling con
+`sudo sh scripts/install-tools.sh`. Siguen siendo opcionales: podés omitirlas sin
+consecuencias y la evidencia obligatoria no depende de ellas.
 
 | Herramienta | Uso propuesto | Observación buscada |
 |---|---|---|

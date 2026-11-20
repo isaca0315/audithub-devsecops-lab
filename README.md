@@ -45,6 +45,7 @@ devsecops/
 ├── README.md            # este documento
 ├── GUIA_ESTUDIANTE.md   # guía de trabajo, sin corrección
 ├── scripts/
+│   ├── install-tools.sh # Docker, Compose y herramientas opcionales
 │   └── smoke.sh         # comprobación opcional de /health y /events
 ├── .gitignore           # ignora artefactos, no ignora .env
 └── app/
@@ -70,12 +71,31 @@ devsecops/
 - Permisos para usar Docker: usuario en el grupo `docker` o prefijar `sudo`
 - Puerto `3100` libre en `127.0.0.1`
 
-Los comandos son los mismos en Ubuntu y en Kali. La validación registrada se
-hizo en Ubuntu 24.04; en Kali no se ejecutó el laboratorio.
+Los comandos son los mismos en Ubuntu y en Kali. El laboratorio se validó en
+Ubuntu 24.04 y en Kali GNU/Linux Rolling.
 
 Trabajá sobre una copia de la carpeta: el repositorio se entrega con el defecto
 intacto y conviene no editar `.env` ni `app/server.js` antes de reproducirlo.
 `.env` está incluido a propósito; no lo reemplaces por un archivo de ejemplo.
+
+## Instalación de herramientas
+
+En Ubuntu 24.04 o Kali, corré una vez desde la carpeta del laboratorio:
+
+```bash
+sudo sh scripts/install-tools.sh
+```
+
+El script instala Docker Engine, el plugin `docker compose` (v5.8.0), `curl`,
+`git` y las herramientas opcionales de la guía: `nmap`, `ffuf`, `gobuster`,
+`gitleaks`, `lynis`, `netcat-openbsd` y `docker-bench-security`. También intenta
+`trivy`: en Kali está en los repositorios, en Ubuntu 24.04 no, y el script lo
+avisa para que lo instales desde <https://trivy.dev> si lo necesitás.
+
+Si tu usuario no era root, el script lo agrega al grupo `docker`; cerrá sesión y
+volvé a entrar antes de correr `docker compose`. Verificá con
+`docker compose version`. Las herramientas son opcionales: el laboratorio se
+reproduce solo con Docker, Compose y `curl`.
 
 ## Comprobación previa
 
@@ -152,10 +172,11 @@ docker inspect audithub-api --format '{{.LogPath}}'
 ### Herramientas de Kali Linux (opcional)
 
 `nmap`, `ffuf`/`gobuster`, `gitleaks`, `trivy`, `docker-bench-security`, `lynis`
-y `netcat` pueden ayudar en la fase de búsqueda, pero **no forman parte de la
-evidencia obligatoria** y no fueron probadas en el aula. La evidencia
-indispensable sale de `curl`, `docker compose` y `docker inspect`. Un escáner
-encuentra rutas; no determina si lo devuelto es válido ni qué hay que rotar.
+y `netcat` pueden ayudar en la fase de búsqueda y se instalan con
+`scripts/install-tools.sh`, pero **no forman parte de la evidencia
+obligatoria**. La evidencia indispensable sale de `curl`, `docker compose` y
+`docker inspect`. Un escáner encuentra rutas; no determina si lo devuelto es
+válido ni qué hay que rotar.
 
 ### Marcas del ejercicio
 
