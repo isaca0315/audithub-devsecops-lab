@@ -93,11 +93,12 @@ El script instala Docker Engine, el plugin `docker compose` (v5.8.0), `curl`,
 `trivy`: en Kali está en los repositorios, en Ubuntu 24.04 no, y el script lo
 avisa para que lo instales desde <https://trivy.dev> si lo necesitás.
 
-El script omite lo que ya está instalado: en Kali varias herramientas vienen en
-el sistema y no se reinstalan ni se actualizan. Si tu usuario no era root, lo
-agrega al grupo `docker`; cerrá sesión y volvé a entrar antes de correr
-`docker compose`. Verificá con `docker compose version`. Las herramientas son
-opcionales: el laboratorio se reproduce solo con Docker, Compose y `curl`.
+El script instala cualquier herramienta de la lista que falte, tanto en Ubuntu
+como en Kali, y omite las que ya están: en Kali varias vienen en el sistema y no
+se reinstalan ni se actualizan. Si tu usuario no era root, lo agrega al grupo
+`docker`; cerrá sesión y volvé a entrar antes de correr `docker compose`.
+Verificá con `docker compose version`. Las herramientas son opcionales: el
+laboratorio se reproduce solo con Docker, Compose y `curl`.
 
 ## Comprobación previa
 
